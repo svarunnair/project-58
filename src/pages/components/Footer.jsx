@@ -5,13 +5,26 @@ import { Dimensions, View ,StyleSheet, Text} from 'react-native'
 function Footer() {
   return (
     <View style={styles.container}>
+    <View>
    <Icon name='link-outline' type='ionicon'></Icon>
+   <Text>Links</Text>
+   </View>
+   <View>
     <Icon name='book-outline' type='ionicon'></Icon>
+    <Text>Courses</Text>
+    </View>
+
     <View style={styles.wrap}>
-     <Icon style={styles.icon} name='add-outline' type='ionicon' ></Icon>
+     <Icon style={styles.icon} name='add-outline' type='ionicon' color={"#FFF"} ></Icon>
      </View>
+     <View>
       <Icon name='megaphone-outline' type='ionicon'></Icon>
+      <Text>Campaigns</Text>
+      </View>
+      <View>
        <Icon name='person-outline' type='ionicon'></Icon>
+       <Text>Profile</Text>
+       </View>
 
 
     </View>
@@ -43,6 +56,7 @@ const styles=StyleSheet.create({
         height:50,
         justifyContent:"center",
         borderRadius:100, 
+        bottom:30,
     
     }
 

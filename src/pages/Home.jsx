@@ -5,9 +5,6 @@ import Chart from './components/Chart';
 import { Icon, color } from '@rneui/base';
 import { ScrollView } from 'react-native';
 import { Linking } from 'react-native';
-import {amazone} from '../../assets/download (1).png'
-
-
 
 
 export default function Home() {
@@ -44,10 +41,6 @@ const recentLinks=data?.data.recent_links
 
 
 
-
-
-
-
 const title=data?.data?.recent_links?.map((item)=>{
   return item.title
 })
@@ -70,12 +63,9 @@ const handleRecent=()=>{
 const topLinks=data?.data.top_links
 
 
-console.log("Clicksss",Click)
-console.log("RecentLinks",recentLinks)
-console.log("show....",show)
-console.log("Toppppppppp....",data?.data.top_links)
-console.log("testTOP...",topLinks)
+
   console.log("Dateeee",formattedDate)
+ 
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -128,22 +118,25 @@ console.log("testTOP...",topLinks)
       <Text style={styles.name}>Varun</Text>
    
       </View>
+
+      <View style={styles.chart}>
       <Chart/>
+      </View>
       <View style={styles.first}>
 
         <View style={styles.inner}>
         <Icon style={styles.iconInner} color="#7B68EE" type='ionicon' name='arrow-up-circle-outline'></Icon>
-        <Text style={styles.innerText}>123</Text>
+        <Text style={styles.innerText}>{data?.today_clicks}</Text>
          <Text style={styles.innerText1}>Today's clicks</Text>
         </View>
          <View style={styles.inner}>
          <Icon style={styles.iconInner}  color="#6495ED" type='ionicon' name='location-outline'></Icon>
-        <Text style={styles.innerText}>Bangalure</Text>
+        <Text style={styles.innerText}>{data?.top_location}</Text>
          <Text style={styles.innerText1}>Top Location</Text>
         </View>
          <View style={styles.inner}>
          <Icon style={styles.iconInner}  color="#DC143C" type='ionicon' name='globe-outline'></Icon>
-        <Text style={styles.innerText}>Instagram</Text>
+        <Text style={styles.innerText}>{data?.top_source}</Text>
          <Text style={styles.innerText1}>Top source</Text>
         </View>
       </View>
@@ -166,7 +159,7 @@ console.log("testTOP...",topLinks)
 <View style={styles.second}>
 <View style={styles.link}>
 
-<View style={styles.link1}>
+{show?<View style={styles.link1}>
 <TouchableOpacity onPress={handleTop}>
 <Text style={styles.textLink}>Top Links</Text>
 </TouchableOpacity>
@@ -174,7 +167,20 @@ console.log("testTOP...",topLinks)
 <TouchableOpacity onPress={handleRecent}>
 <Text style={styles.textLink1}>Recent Links</Text>
 </TouchableOpacity>
-</View>
+</View>:
+
+
+
+<View style={styles.link1}>
+<TouchableOpacity onPress={handleTop}>
+<Text style={styles.textLinkN}>Top Links</Text>
+</TouchableOpacity>
+
+<TouchableOpacity onPress={handleRecent}>
+<Text style={styles.textLink1N}>Recent Links</Text>
+</TouchableOpacity>
+</View>}
+
 
 <Icon type='ionicon' name='search-outline'></Icon>
 </View>
@@ -188,14 +194,17 @@ console.log("testTOP...",topLinks)
 
 <View style={styles.mapWrap}>
 <Image style={styles.img}
-        source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkX5L0ubEpO3tsc5wAgQhtAqu6f8Mzr7dwV3JpytgNg&s' }}
+        source={{uri:item.original_image}}
       
       />
       <View>
   <Text style={styles.datatext}>{item.app}</Text>
   <Text>{formattedDate}</Text>
   </View>
-  <Text style={styles.click}>{item.total_clicks}</Text>
+  <View>
+  <Text style={styles.click}>{item?.total_clicks}</Text>
+    <Text style={styles.clickText}>Clicks</Text>
+    </View>
  </View>
  <View style={styles.mapWrap1} >
 <Text style={styles.mapWraplink}  onPress={() => Linking.openURL(item.web_link)}>{item.web_link}</Text>
@@ -217,7 +226,7 @@ console.log("testTOP...",topLinks)
 
 <View style={styles.mapWrap}>
 <Image  style={styles.img}
-        source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkX5L0ubEpO3tsc5wAgQhtAqu6f8Mzr7dwV3JpytgNg&s' }}
+        source={{uri:item.original_image}}
       
       />
       <View>
@@ -234,7 +243,7 @@ console.log("testTOP...",topLinks)
 <Text style={styles.mapWraplink}  onPress={() => Linking.openURL(item.web_link)}>{item.web_link}</Text>
 
 <Icon type='ionicon' name='copy-outline'></Icon>
- 
+
  </View>
 </View>
 ))}
@@ -258,11 +267,11 @@ console.log("testTOP...",topLinks)
 
 <View style={styles.lastbox}>
 <Icon type='ionicon' name='logo-whatsapp'></Icon>
-  <Text>Chat</Text>
+  <Text style={styles.bottomtext}>Chat</Text>
   </View>
   <View style={styles.lastbox1}>
   <Icon type='ionicon' name='help-circle-outline'></Icon>
-   <Text>Frequently asked question</Text>
+   <Text style={styles.bottomtext}>Frequently asked question</Text>
    </View>
 </View>
 
@@ -279,13 +288,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width:deviceWidth,
-    backgroundColor:"#FFFAF0",
+    backgroundColor:"#FDF5E6",
     borderTopLeftRadius: 30, 
     borderTopRightRadius: 30,   
   },
-  img:{
-    width:"100%"
-  },
+ 
   link1:{
     flexDirection:"row",
     gap:10
@@ -297,9 +304,16 @@ const styles = StyleSheet.create({
     marginBottom:50,  
   }
   ,
+  chart:{
+ 
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  bottomtext:{
+    fontSize:18,
+  },
   img:{
     height:30,
-    borderWidth:1,
     width:40,
   }
   ,
@@ -354,7 +368,7 @@ lastbox1:{
      borderRadius:10,
   },
   bottom:{
-    borderWidth:2,
+
     justifyContent:"center",
     alignItems:"center",
   },
@@ -457,6 +471,24 @@ lastbox1:{
 
 
   },
+   textLinkN:{
+    fontSize:15,
+    borderRadius:15,
+    padding:10,
+    width:"100%",
+    textAlign:"center",
+    backgroundColor:"#fff",
+    color:"grey",
+  },
+  textLink1N:{
+    fontSize:15,
+    borderRadius:15,
+    padding:10,
+    width:"100%",
+    textAlign:"center",
+    backgroundColor:"#1E90FF",
+    color:"#fff",
+  },
   name:{
   
     flexDirection:"row",
@@ -490,8 +522,7 @@ lastbox1:{
   
   },
   cover:{
-    // borderColor:"red",
-    // borderWidth:2,
+  
     justifyContent:"center",
     alignItems:"center"
   },

@@ -17,6 +17,7 @@ function Chart() {
       console.log("ChartData....",data)
 
 
+
     useEffect(()=>{
         const fetchData=async()=>{
             try{
@@ -43,24 +44,23 @@ function Chart() {
       datasets: [
         {
           data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100
+            0,
+            25,
+            50,
+            75,
+            100
           ]
         }
       ]
     }}
-    width={Dimensions.get("window").width} // from react-native
+    width={Dimensions.get("window").width-20}
     height={220}
     yAxisLabel=""
     yAxisSuffix=""
-    yAxisInterval={1} // optional, defaults to 1
+    yAxisInterval={1} 
     chartConfig={{
       backgroundColor: "#e26a00",
-      backgroundGradientFrom: "#fb8c00",
+      backgroundGradientFrom: "green",
       backgroundGradientTo: "#ffa726",
      
       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -74,7 +74,7 @@ function Chart() {
         stroke: "#ffa726"
       }
     }}
-    bezier
+
     style={{
       marginVertical: 8,
       borderRadius: 16
