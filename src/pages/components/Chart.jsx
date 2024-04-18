@@ -16,6 +16,7 @@ function Chart() {
 
       console.log("ChartData....",data)
 
+const deviceWidth=Math.round(Dimensions.get("window").width)
 
 
     useEffect(()=>{

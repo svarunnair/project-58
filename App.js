@@ -10,8 +10,7 @@ export default function App() {
   return (
     <View style={styles.container}>
    <NavBar/>
-     <Home/>
-  
+     <Home/> 
      <Footer/>
     </View>
   );

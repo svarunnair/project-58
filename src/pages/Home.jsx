@@ -276,7 +276,6 @@ const topLinks=data?.data.top_links
 </View>
 
 </View>
-
       <StatusBar style="auto" />
     </ScrollView>
   );
@@ -493,7 +492,7 @@ lastbox1:{
   
     flexDirection:"row",
     fontWeight:"600",
-    fontSize:20
+    fontSize:22
     },
   first:{
   
@@ -508,6 +507,9 @@ lastbox1:{
   },
   wish:{
     marginTop:20,
+    fontWeight:"400",
+    fontSize:18,
+    color:"grey"
   },
   wrap:{
  
