@@ -1,88 +1,83 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Dimensions, Text, View } from 'react-native';
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
+import { LineChart } from 'react-native-chart-kit';
 
 function Chart() {
+  const [data, setData] = useState(null);
 
-      const [data,setData]=useState(null)
+  useEffect(() => {
+ 
+    const overallUrlChartData = {
+      "0": 0,
+      "1": 0,
+      "2": 1,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0
+    };
 
 
-      console.log("ChartData....",data)
-
-const deviceWidth=Math.round(Dimensions.get("window").width)
-
-
-    useEffect(()=>{
-        const fetchData=async()=>{
-            try{
-                const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU5MjcsImlhdCI6MTY3NDU1MDQ1MH0.dCkW0ox8tbjJA2GgUx2UEwNlbTZ7Rr38PVFJevYcXFI"
-                const res=await fetch("https://api.inopenapp.com/api/v1/dashboardNew",{
-                    headers:{
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                const json = await res.json();
-                setData(json);
-            }
-            catch(err){
-                console.log("error",err)
-            }
-        }
-        fetchData()
-    },[])
-  return (
-  <View>
-  <LineChart
-    data={{
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug"],
-      datasets: [
-        {
-          data: [
-            0,
-            25,
-            50,
-            75,
-            100
-          ]
-        }
-      ]
-    }}
-    width={Dimensions.get("window").width-20}
-    height={220}
-    yAxisLabel=""
-    yAxisSuffix=""
-    yAxisInterval={1} 
-    chartConfig={{
-      backgroundColor: "#e26a00",
-      backgroundGradientFrom: "green",
-      backgroundGradientTo: "#ffa726",
-     
-      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      style: {
-        borderRadius: 16
-      },
-      propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726"
+    const labels = Object.keys(overallUrlChartData); 
+    const datasets = [
+      {
+        data: Object.values(overallUrlChartData)
       }
-    }}
+    ];
 
-    style={{
-      marginVertical: 8,
-      borderRadius: 16
-    }}
-  />
-</View>
-  )
+    setData({ labels, datasets }); 
+  }, []);
+
+  return (
+    <View>
+      {data && (
+        <LineChart
+          data={data}
+          width={Dimensions.get('window').width - 20}
+          height={220}
+          yAxisLabel=""
+          yAxisSuffix=""
+          yAxisInterval={1}
+          chartConfig={{
+            backgroundColor: '#e26a00',
+            backgroundGradientFrom: 'green',
+            backgroundGradientTo: '#ffa726',
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16
+            },
+            propsForDots: {
+              r: '4',
+              strokeWidth: '2',
+              stroke: '#1E90FF'
+            }
+          }}
+          style={{
+            marginVertical: 8,
+            borderRadius: 16
+          }}
+        />
+      )}
+    </View>
+  );
 }
 
-export default Chart
+export default Chart;

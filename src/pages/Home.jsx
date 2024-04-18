@@ -70,18 +70,11 @@ const topLinks=data?.data.top_links
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
-      const options = {
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-      };
-      const timeString = now.toLocaleTimeString('en-US', options);
+      const currentHour = now.getHours();
 
-      const hour = parseInt(timeString.slice(0, 2), 10); 
-  
-      if (hour >= 0 && hour < 12) {
+      if (currentHour >= 0 && currentHour < 12) {
         setWish('Good Morning');
-      } else if (hour >= 12 && hour < 18) {
+      } else if (currentHour >= 12 && currentHour < 18) {
         setWish('Good Afternoon');
       } else {
         setWish('Good Evening'); 
@@ -110,6 +103,8 @@ const topLinks=data?.data.top_links
         }
         fetchData()
     },[])
+
+    console.log("time>>......",Date())
   return (
     <ScrollView style={styles.container}>
     <View style={styles.wrap}>
