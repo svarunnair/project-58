@@ -14,38 +14,19 @@ export default function Home() {
    
 const [wish, setWish] = useState('Good Morning');
 
-console.log("WISH",wish)
-
-
-
-
-console.log("Data",data)
-console.log("check...........",data?.data.recent_links)
-
-
-
 const recentLinks=data?.data.recent_links
 
-
-
  const currentDate = new Date();
-
-
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth() + 1;
   const day = currentDate.getDate();
 
- 
   const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-
-
-
 
 const title=data?.data?.recent_links?.map((item)=>{
   return item.title
 })
 
-console.log("Title",title)
 
 const Click=data?.data?.recent_links?.map((item)=>{
   return item.total_clicks
@@ -59,13 +40,7 @@ const handleRecent=()=>{
   setShow(false)
 }
 
-
 const topLinks=data?.data.top_links
-
-
-
-  console.log("Dateeee",formattedDate)
- 
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -204,7 +179,7 @@ const topLinks=data?.data.top_links
  <View style={styles.mapWrap1} >
 <Text style={styles.mapWraplink}  onPress={() => Linking.openURL(item.web_link)}>{item.web_link}</Text>
 
-<Icon type='ionicon' name='copy-outline'></Icon>
+<Icon type='ionicon' name='copy-outline' style={styles.iconcopy}></Icon>
  
  </View>
 </View>
@@ -296,6 +271,9 @@ const styles = StyleSheet.create({
     gap:20,
     marginTop:50,
     marginBottom:50,  
+  },
+  iconcopy:{
+   
   }
   ,
   chart:{
