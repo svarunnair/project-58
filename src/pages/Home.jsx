@@ -187,7 +187,7 @@ console.log("testTOP...",topLinks)
   <View style={styles.box}>
 
 <View style={styles.mapWrap}>
-<Image
+<Image style={styles.img}
         source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkX5L0ubEpO3tsc5wAgQhtAqu6f8Mzr7dwV3JpytgNg&s' }}
       
       />
@@ -216,7 +216,7 @@ console.log("testTOP...",topLinks)
   <View style={styles.box}>
 
 <View style={styles.mapWrap}>
-<Image
+<Image  style={styles.img}
         source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkkX5L0ubEpO3tsc5wAgQhtAqu6f8Mzr7dwV3JpytgNg&s' }}
       
       />
@@ -294,10 +294,13 @@ const styles = StyleSheet.create({
   last:{
     gap:20,
     marginTop:50,
-    marginBottom:50,
-    
-  
-   
+    marginBottom:50,  
+  }
+  ,
+  img:{
+    height:30,
+    borderWidth:1,
+    width:40,
   }
   ,
 
